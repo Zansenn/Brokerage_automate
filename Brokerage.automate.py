@@ -17,5 +17,5 @@ site_login()
 def find_postcode():
   select_table = driver.find_element_by_css_selector('.col-sm-6:nth-child(2)')
   select_table.find_element_by_partial_link_text("HR2").click()
-
+ 
 find_postcode()
