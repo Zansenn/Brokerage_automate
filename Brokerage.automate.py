@@ -4,7 +4,6 @@ from selenium.webdriver.chrome.options import Options
 options = Options()
 options.binary_location = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
 driver = webdriver.Chrome(chrome_options=options, executable_path="C:\\Users\\nazse\\chromedriver\\chromedriver.exe",)
-#driver.get('https://herefordshirebrokerage.care-for-it.com/index.php/login')
 
 def site_login():
     driver.get("https://herefordshirebrokerage.care-for-it.com/index.php/login")
