@@ -1,6 +1,9 @@
 import selenium
 from selenium import webdriver 
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
 options = Options()
 options.binary_location = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
 driver = webdriver.Chrome(chrome_options=options, executable_path="C:\\Users\\nazse\\chromedriver\\chromedriver.exe",)
@@ -22,5 +25,20 @@ def find_postcode(postcode):
   select_table = driver.find_element_by_css_selector('.col-sm-6:nth-child(2)')
   select_table.find_element_by_partial_link_text(postcode).click()
 
+def change_tab():
+  driver.switch_to_window(driver.window_handles[1])
+#  driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.TAB)
 
-#find_postcode('HR2')
+
+def request_package():
+  #driver.find_element(By.ID, "request").click()
+#  driver.find_element_by_name("token").click()
+  driver.find_element_by_xpath("/html/body/div[2]/div/div[2]/div[2]/div[2]/div/div[1]/div[1]/ul/li/form[1]/button/i").click()
+  #request = driver.find_element_by_id("request")
+  #request.click()
+  #select_button.driver.find_element_by_id("further-info").send_keys("Able to start asap")
+
+find_postcode('HR2')
+change_tab()
+driver.implicitly_wait(5)
+request_package()
