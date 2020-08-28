@@ -18,7 +18,6 @@ def site_login():
   driver.find_element_by_name("txtPassword").send_keys(pass_word)
   driver.find_element_by_id("login_button").click()
 
-site_login()
 
 def find_postcode(postcode):
   postcode = str(postcode)
@@ -32,13 +31,20 @@ def change_tab():
 
 def request_package():
   #driver.find_element(By.ID, "request").click()
-#  driver.find_element_by_name("token").click()
+  #driver.find_element_by_name("token").click()
   driver.find_element_by_xpath("/html/body/div[2]/div/div[2]/div[2]/div[2]/div/div[1]/div[1]/ul/li/form[1]/button/i").click()
-  #request = driver.find_element_by_id("request")
-  #request.click()
   #select_button.driver.find_element_by_id("further-info").send_keys("Able to start asap")
 
-find_postcode('HR2')
+def write_response():
+  driver.find_element_by_xpath("/html/body/div[5]/div[2]/form/div/textarea").send_keys("Ready to start asap")
+
+postcode_list
+
+site_login()
+#find_postcode('HR2')
+find_postcode('HR1')
 change_tab()
-driver.implicitly_wait(5)
+#driver.implicitly_wait(5)
 request_package()
+#driver.implicitly_wait(15)
+write_response()
