@@ -8,8 +8,8 @@ driver = webdriver.Chrome(chrome_options=options, executable_path="C:\\Users\\na
 def site_login():
     driver.get("https://herefordshirebrokerage.care-for-it.com/index.php/login")
     userID = driver.find_element_by_name("txtEmail")
-    userID.send_keys("erin.bradley@surecarehereford.co.uk")
-    driver.find_element_by_name("txtPassword").send_keys("Password8")
+    userID.send_keys("email_address_here")
+    driver.find_element_by_name("txtPassword").send_keys("passwordhere")
     driver.find_element_by_id("login_button").click()
 
 site_login()
