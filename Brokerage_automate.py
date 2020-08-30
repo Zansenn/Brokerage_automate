@@ -1,20 +1,30 @@
 import selenium
-import beautifulsou
-#login info stored in var1 for ease
-import var1 from var1 import *
+import bs4
+#import var1 
+import requests
 
+from var1 import *
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
+#uses request to get HTML info so we can pass into beautiful soup
+payload = {
+  'txtEmail': user_name,
+  'txtPassword': pass_word
+}
+with requests.Session() as s:
+    p = s.post('https://herefordshirebrokerage.care-for-it.com/index.php/login', data=payload)
+    r = s.get("https://herefordshirebrokerage.care-for-it.com/index.php/dashboard")
+
+#specifies chrome and driver location 
 options = Options()
 options.binary_location = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
 driver = webdriver.Chrome(chrome_options=options, executable_path="C:\\Users\\nazse\\chromedriver\\chromedriver.exe",)
 
-#input(" what's your email address")
-#input("what's your password")
-
+#opens brokerage site and logs in
 def site_login():
   driver.get("https://herefordshirebrokerage.care-for-it.com/index.php/login")
   userID = driver.find_element_by_name("txtEmail")
@@ -22,32 +32,30 @@ def site_login():
   driver.find_element_by_name("txtPassword").send_keys(pass_word)
   driver.find_element_by_id("login_button").click()
 
-
+#finds a postcode in a webpage (not in beautiful soup)
 def find_postcode(postcode):
   postcode = str(postcode)
   select_table = driver.find_element_by_css_selector('.col-sm-6:nth-child(2)')
   select_table.find_element_by_partial_link_text(postcode).click()
 
+#changes tab
 def change_tab():
   driver.switch_to_window(driver.window_handles[1])
-#  driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.TAB)
 
-
+#click to request packages
 def request_package():
-  #driver.find_element(By.ID, "request").click()
-  #driver.find_element_by_name("token").click()
   driver.find_element_by_xpath("/html/body/div[2]/div/div[2]/div[2]/div[2]/div/div[1]/div[1]/ul/li/form[1]/button/i").click()
-  #select_button.driver.find_element_by_id("further-info").send_keys("Able to start asap")
 
+#write in response box after clicking to request packages
 def write_response():
   driver.find_element_by_xpath("/html/body/div[5]/div[2]/form/div/textarea").send_keys("Ready to start asap")
 
-#this list doesnt yet work check map() function ???
-postcode_list = ["HR1 1", "HR1 2"]
+#uncomment below if you want the user to be prompted to enter their user name
+#input(" what's your email address")
+#input("what's your password")
 
 site_login()
-#find_postcode('HR2')
-find_postcode(postcode_list)
+find_postcode('HR2')
 change_tab()
 #driver.implicitly_wait(5)
 request_package()
