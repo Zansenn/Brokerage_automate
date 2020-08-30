@@ -1,6 +1,6 @@
 import selenium
 import bs4
-#import var1 
+import var1 
 import requests
 
 from var1 import *
@@ -9,15 +9,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-
-#uses request to get HTML info so we can pass into beautiful soup
-payload = {
-  'txtEmail': user_name,
-  'txtPassword': pass_word
-}
-with requests.Session() as s:
-    p = s.post('https://herefordshirebrokerage.care-for-it.com/index.php/login', data=payload)
-    r = s.get("https://herefordshirebrokerage.care-for-it.com/index.php/dashboard")
 
 #specifies chrome and driver location 
 options = Options()
@@ -50,14 +41,29 @@ def request_package():
 def write_response():
   driver.find_element_by_xpath("/html/body/div[5]/div[2]/form/div/textarea").send_keys("Ready to start asap")
 
+#uses request to get HTML info so we can pass into beautiful soup
+payload = {
+  'txtEmail': user_name,
+  'txtPassword': pass_word
+}
+with requests.Session() as s:
+    p = s.post('https://herefordshirebrokerage.care-for-it.com/index.php/login', data=payload)
+    r = s.get("https://herefordshirebrokerage.care-for-it.com/index.php/dashboard")
+
+
+soup = BeautifulSoup(r.content, features="html.parser")
+
 #uncomment below if you want the user to be prompted to enter their user name
 #input(" what's your email address")
 #input("what's your password")
 
-site_login()
-find_postcode('HR2')
-change_tab()
+print(soup)
+
+
+#site_login()
+#find_postcode('HR2')
+#change_tab()
 #driver.implicitly_wait(5)
-request_package()
+#request_package()
 #driver.implicitly_wait(15)
-write_response()
+#write_response()
