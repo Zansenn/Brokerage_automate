@@ -1,7 +1,7 @@
 import selenium
-#this bit is broken find it in sitesavaialilbe 
-import var1
-from var1 import *
+import beautifulsou
+#login info stored in var1 for ease
+import var1 from var1 import *
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
