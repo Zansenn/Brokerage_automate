@@ -1,5 +1,9 @@
 import selenium
-from selenium import webdriver 
+#this bit is broken find it in sitesavaialilbe 
+import var1
+from var1 import *
+
+from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -8,8 +12,8 @@ options = Options()
 options.binary_location = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
 driver = webdriver.Chrome(chrome_options=options, executable_path="C:\\Users\\nazse\\chromedriver\\chromedriver.exe",)
 
-user_name = input(" what's your email address")
-pass_word = input("what's your password")
+#input(" what's your email address")
+#input("what's your password")
 
 def site_login():
   driver.get("https://herefordshirebrokerage.care-for-it.com/index.php/login")
@@ -38,11 +42,12 @@ def request_package():
 def write_response():
   driver.find_element_by_xpath("/html/body/div[5]/div[2]/form/div/textarea").send_keys("Ready to start asap")
 
-postcode_list
+#this list doesnt yet work check map() function ???
+postcode_list = ["HR1 1", "HR1 2"]
 
 site_login()
 #find_postcode('HR2')
-find_postcode('HR1')
+find_postcode(postcode_list)
 change_tab()
 #driver.implicitly_wait(5)
 request_package()
