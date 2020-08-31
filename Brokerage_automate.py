@@ -10,9 +10,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 #specifies chrome and driver location 
-options = Options()
-options.binary_location = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
-driver = webdriver.Chrome(chrome_options=options, executable_path="C:\\Users\\nazse\\chromedriver\\chromedriver.exe",)
+#options = Options()
+#options.binary_location = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+#driver = webdriver.Chrome(chrome_options=options, executable_path="C:\\Users\\nazse\\chromedriver\\chromedriver.exe",)
 
 #opens brokerage site and logs in
 def site_login():
@@ -43,6 +43,12 @@ def cook_soup():
 #uncomment below if you want the user to be prompted to enter their user name
 #input(" what's your email address")
 #input("what's your password")
+
+if __name__ == "__main__":
+
+  options = Options()
+  options.binary_location = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+  driver = webdriver.Chrome(chrome_options=options, executable_path="C:\\Users\\nazse\\chromedriver\\chromedriver.exe",)
 
 #site_login()
 #cook_soup()
