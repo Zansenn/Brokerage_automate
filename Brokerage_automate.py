@@ -1,7 +1,6 @@
 import selenium
 import bs4
 import var1 
-import requests
 
 from var1 import *
 from bs4 import BeautifulSoup
@@ -29,38 +28,24 @@ def find_postcode(postcode):
   select_table = driver.find_element_by_css_selector('.col-sm-6:nth-child(2)')
   select_table.find_element_by_partial_link_text(postcode).click()
 
-#changes tab
-def change_tab():
-  driver.switch_to_window(driver.window_handles[1])
 
-#click to request packages
+#First changes to new tab then clicks the respond button
+#then writes in the comments popup  box that appears 
 def request_package():
+  driver.switch_to_window(driver.window_handles[1])
   driver.find_element_by_xpath("/html/body/div[2]/div/div[2]/div[2]/div[2]/div/div[1]/div[1]/ul/li/form[1]/button/i").click()
-
-#write in response box after clicking to request packages
-def write_response():
   driver.find_element_by_xpath("/html/body/div[5]/div[2]/form/div/textarea").send_keys("Ready to start asap")
 
-#uses request to get HTML info so we can pass into beautiful soup
-payload = {
-  'txtEmail': user_name,
-  'txtPassword': pass_word
-}
-with requests.Session() as s:
-    p = s.post('https://herefordshirebrokerage.care-for-it.com/index.php/login', data=payload)
-    r = s.get("https://herefordshirebrokerage.care-for-it.com/index.php/dashboard")
-
-
-soup = BeautifulSoup(r.content, features="html.parser")
+#specifies the parser and the soup
+def cook_soup():
+  soup = BeautifulSoup(driver.page_source, features="html.parser")
 
 #uncomment below if you want the user to be prompted to enter their user name
 #input(" what's your email address")
 #input("what's your password")
 
-print(soup)
-
-
 #site_login()
+#cook_soup()
 #find_postcode('HR2')
 #change_tab()
 #driver.implicitly_wait(5)
